@@ -3,6 +3,7 @@ import { Metadata } from "next"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
+import { getServerClient } from "@/lib/supabase/hook"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/Sonner"
 import { Providers } from "@/components/layout/Providers"
@@ -28,7 +29,10 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const supabase = getServerClient()
+  const { data } = await supabase.auth.getUser()
+
   return (
     <>
       <html lang="en" suppressHydrationWarning>
@@ -38,7 +42,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
-          <Providers attribute="class" defaultTheme="dark" enableSystem>
+          <Providers
+            user={data.user}
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+          >
             <Toaster />
             <div className="relative flex min-h-screen flex-col">
               {children}

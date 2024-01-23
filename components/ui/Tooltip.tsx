@@ -74,4 +74,10 @@ const TooltipWrapper: FC<TooltipWrapperProps> = ({ children, content }) => {
 
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, TooltipWrapper }
+export {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+  TooltipWrapper,
+}

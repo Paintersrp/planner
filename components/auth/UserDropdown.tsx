@@ -4,8 +4,6 @@ import { useState } from "react"
 
 import { useUserStore } from "@/lib/stores/user"
 import { cn } from "@/lib/utils"
-import { useAuth } from "@/hooks/auth/useAuth"
-import { useAuthModal } from "@/hooks/auth/useAuthModal"
 import { Button } from "@/components/ui/Button"
 import {
   DropdownMenu,
@@ -16,6 +14,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu"
 import { Icons } from "@/components/ui/Icons"
+import { useAuth } from "@/components/auth/hooks/useAuth"
+import { useAuthModal } from "@/components/auth/hooks/useAuthModal"
 
 export function UserDropdown() {
   const [open, setOpen] = useState<boolean>(false)

@@ -46,11 +46,18 @@ export interface TextProps
 }
 
 const Text = forwardRef<HTMLHeadingElement, TextProps>(
-  ({ children, className, variant, size, type, asChild = false, ...props }, ref) => {
+  (
+    { children, className, variant, size, type, asChild = false, ...props },
+    ref
+  ) => {
     const Comp = type ?? "p"
 
     return (
-      <Comp className={cn(textVariants({ variant, type, size, className }))} ref={ref} {...props}>
+      <Comp
+        className={cn(textVariants({ variant, type, size, className }))}
+        ref={ref}
+        {...props}
+      >
         {children}
       </Comp>
     )

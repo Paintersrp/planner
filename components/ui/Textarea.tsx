@@ -8,7 +8,8 @@ import {
 
 import { cn } from "@/lib/utils"
 
-export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
+export interface TextareaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, ...props }, forwardedRef) => {

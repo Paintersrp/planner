@@ -3,7 +3,13 @@ import { redirect } from "next/navigation"
 
 import { getServerClient } from "@/lib/supabase/hook"
 import { buttonVariants } from "@/components/ui/Button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/Card"
 import { Icons } from "@/components/ui/Icons"
 import { Text } from "@/components/ui/Text"
 import { ForgotForm } from "@/components/auth/ForgotForm"

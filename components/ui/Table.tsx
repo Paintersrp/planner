@@ -26,78 +26,84 @@ const Table = forwardRef<HTMLTableElement, HTMLAttributes<HTMLTableElement>>(
   )
 )
 
-const TableHeader = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
-  ({ className, ...props }, ref) => (
-    <thead
-      ref={ref}
-      className={cn(
-        `
+const TableHeader = forwardRef<
+  HTMLTableSectionElement,
+  HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <thead
+    ref={ref}
+    className={cn(
+      `
         [&_tr]:border-b
       `,
-        className
-      )}
-      {...props}
-    />
-  )
-)
+      className
+    )}
+    {...props}
+  />
+))
 
-const TableBody = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
-  ({ className, ...props }, ref) => (
-    <tbody
-      ref={ref}
-      className={cn(
-        `
+const TableBody = forwardRef<
+  HTMLTableSectionElement,
+  HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <tbody
+    ref={ref}
+    className={cn(
+      `
         [&_tr:last-child]:border-0
       `,
-        className
-      )}
-      {...props}
-    />
-  )
-)
+      className
+    )}
+    {...props}
+  />
+))
 
-const TableFooter = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
-  ({ className, ...props }, ref) => (
-    <tfoot
-      ref={ref}
-      className={cn(
-        `
+const TableFooter = forwardRef<
+  HTMLTableSectionElement,
+  HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <tfoot
+    ref={ref}
+    className={cn(
+      `
         border-t
         bg-muted/50 
         font-medium 
         [&>tr]:last:border-b-0
       `,
-        className
-      )}
-      {...props}
-    />
-  )
-)
+      className
+    )}
+    {...props}
+  />
+))
 
-const TableRow = forwardRef<HTMLTableRowElement, HTMLAttributes<HTMLTableRowElement>>(
-  ({ className, ...props }, ref) => (
-    <tr
-      ref={ref}
-      className={cn(
-        `
+const TableRow = forwardRef<
+  HTMLTableRowElement,
+  HTMLAttributes<HTMLTableRowElement>
+>(({ className, ...props }, ref) => (
+  <tr
+    ref={ref}
+    className={cn(
+      `
           border-b 
           transition-colors 
           hover:bg-muted/50 
           data-[state=selected]:bg-muted
         `,
-        className
-      )}
-      {...props}
-    />
-  )
-)
+      className
+    )}
+    {...props}
+  />
+))
 
-const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLTableCellElement>>(
-  ({ className, ...props }, ref) => (
-    <th
-      ref={ref}
-      className={cn(
-        `
+const TableHead = forwardRef<
+  HTMLTableCellElement,
+  ThHTMLAttributes<HTMLTableCellElement>
+>(({ className, ...props }, ref) => (
+  <th
+    ref={ref}
+    className={cn(
+      `
         h-12 
         px-4 
         text-left 
@@ -105,45 +111,46 @@ const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLTableCel
         font-medium 
         [&:has([role=checkbox])]:pr-0
       `,
-        className
-      )}
-      {...props}
-    />
-  )
-)
+      className
+    )}
+    {...props}
+  />
+))
 
-const TableCell = forwardRef<HTMLTableCellElement, TdHTMLAttributes<HTMLTableCellElement>>(
-  ({ className, ...props }, ref) => (
-    <td
-      ref={ref}
-      className={cn(
-        `
+const TableCell = forwardRef<
+  HTMLTableCellElement,
+  TdHTMLAttributes<HTMLTableCellElement>
+>(({ className, ...props }, ref) => (
+  <td
+    ref={ref}
+    className={cn(
+      `
         p-4 
         align-middle 
         [&:has([role=checkbox])]:pr-0
       `,
-        className
-      )}
-      {...props}
-    />
-  )
-)
+      className
+    )}
+    {...props}
+  />
+))
 
-const TableCaption = forwardRef<HTMLTableCaptionElement, HTMLAttributes<HTMLTableCaptionElement>>(
-  ({ className, ...props }, ref) => (
-    <caption
-      ref={ref}
-      className={cn(
-        `
+const TableCaption = forwardRef<
+  HTMLTableCaptionElement,
+  HTMLAttributes<HTMLTableCaptionElement>
+>(({ className, ...props }, ref) => (
+  <caption
+    ref={ref}
+    className={cn(
+      `
         mt-4 
         text-sm
       `,
-        className
-      )}
-      {...props}
-    />
-  )
-)
+      className
+    )}
+    {...props}
+  />
+))
 
 Table.displayName = "Table"
 TableHeader.displayName = "TableHeader"
@@ -154,4 +161,13 @@ TableHead.displayName = "TableHead"
 TableCell.displayName = "TableCell"
 TableCaption.displayName = "TableCaption"
 
-export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption }
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+}

@@ -1,15 +1,24 @@
 "use client"
 
-import { Dispatch, FC, KeyboardEvent, SetStateAction, useCallback, useRef, useState } from "react"
+import {
+  useCallback,
+  useRef,
+  useState,
+  type Dispatch,
+  type FC,
+  type InputHTMLAttributes,
+  type KeyboardEvent,
+  type SetStateAction,
+} from "react"
 import { Command as CommandPrimitive } from "cmdk"
-import { X } from "lucide-react"
 
 import { Badge } from "@/components/ui/Badge"
 import { Command, CommandGroup, CommandItem } from "@/components/ui/Command"
+import { Icons } from "@/components/ui/Icons"
+import { ScrollArea } from "@/components/ui/ScrollArea"
 
-import { ScrollArea } from "../ui/ScrollArea"
-
-export interface MultiSelectProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface MultiSelectProps
+  extends InputHTMLAttributes<HTMLInputElement> {
   options: { id: string; name: string }[]
   selected: string[]
   setSelected: Dispatch<SetStateAction<string[]>>
@@ -55,7 +64,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
             })
           }
         }
-        // This is not a default behaviour of the <input /> field
+
         if (e.key === "Escape") {
           input.blur()
         }
@@ -67,7 +76,10 @@ const MultiSelect: FC<MultiSelectProps> = ({
   const selectables = options.filter((option) => !selected.includes(option.id))
 
   return (
-    <Command onKeyDown={handleKeyDown} className="overflow-visible bg-transparent">
+    <Command
+      onKeyDown={handleKeyDown}
+      className="overflow-visible bg-transparent"
+    >
       <div className="group border border-input px-3 py-2 text-sm ring-offset-background rounded-md focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
         <div className="flex gap-1 flex-wrap">
           {selectedItems.map((role) => {
@@ -91,12 +103,12 @@ const MultiSelect: FC<MultiSelectProps> = ({
                     handleUnselectName(role)
                   }}
                 >
-                  <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                  <Icons.Close className="size-3 text-muted-foreground hover:text-foreground" />
                 </button>
               </Badge>
             )
           })}
-          {/* Avoid having the "Search" Icon */}
+
           <CommandPrimitive.Input
             ref={inputRef}
             value={inputValue}

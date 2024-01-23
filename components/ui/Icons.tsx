@@ -1,6 +1,7 @@
 import {
   ArrowDown,
   ArrowUp,
+  CalendarDays,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -10,9 +11,14 @@ import {
   Copyright,
   Edit,
   Expand,
+  Eye,
   EyeOff,
+  Facebook,
+  FileBarChart,
   ImagePlus,
   Info,
+  Instagram,
+  LayoutDashboard,
   LogOut,
   LucideProps,
   MailPlus,
@@ -57,6 +63,47 @@ export const Icons = {
   ChevronsUpDown,
   ChevronLeft,
   ChevronRight,
+  Calendar: CalendarDays,
+  FileBarChart,
+  Facebook,
+  Instagram,
+  AppWindow: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="M10 4v4" />
+      <path d="M2 8h20" />
+      <path d="M6 4v4" />
+    </svg>
+  ),
+  Menu: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M3 5H11" />
+      <path d="M3 12H16" />
+      <path d="M3 19H21" />
+    </svg>
+  ),
   Notebook: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -168,8 +215,10 @@ export const Icons = {
   Delete: Trash,
   Server,
   Copy,
+  Dashboard: LayoutDashboard,
   ImagePlus,
   SlidersHorizontal,
+  Eye,
   EyeOff,
   MoreHorizontal,
   Edit,

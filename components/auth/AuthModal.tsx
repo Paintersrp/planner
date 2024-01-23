@@ -2,7 +2,6 @@
 
 import { FC } from "react"
 
-import { useAuthModal } from "@/hooks/auth/useAuthModal"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import {
   Dialog,
@@ -21,6 +20,7 @@ import { Icons } from "@/components/ui/Icons"
 import { Text } from "@/components/ui/Text"
 
 import { AuthModalForm } from "./AuthModalForm"
+import { useAuthModal } from "./hooks/useAuthModal"
 
 interface AuthModalProps {
   open?: boolean

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type Dispatch, type FC, type ReactNode, type SetStateAction } from "react"
+import type { Dispatch, FC, ReactNode, SetStateAction } from "react"
 
 import { Button } from "@/components/ui/Button"
 import { Checkbox } from "@/components/ui/Checkbox"
@@ -59,7 +59,10 @@ const AddModal: FC<AddModalProps> = ({
 
         <DialogFooter className="gap-2 sm:gap-0 justify-between w-full">
           <div className="flex w-full items-center">
-            <Checkbox checked={keepOpen} onCheckedChange={() => setKeepOpen(!keepOpen)} />
+            <Checkbox
+              checked={keepOpen}
+              onCheckedChange={() => setKeepOpen(!keepOpen)}
+            />
             <Text className="ml-2 font-medium text-sm">Add another?</Text>
           </div>
           <DialogClose asChild>

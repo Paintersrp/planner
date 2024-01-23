@@ -2,7 +2,7 @@
 
 import { type FC } from "react"
 
-import { useAuth } from "@/hooks/auth/useAuth"
+import { useAuth } from "@/components/auth/hooks/useAuth"
 
 import { AuthForm } from "./AuthForm"
 

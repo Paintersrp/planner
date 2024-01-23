@@ -80,10 +80,20 @@ const buttonVariants = cva(
           transition-all
           duration-300
         `,
+        warning: `
+          bg-warning 
+          text-warning-foreground 
+          hover:bg-warning/90
+        `,
         warningInvert: `
           bg-warning 
           text-warning-foreground 
           hover:bg-warning/90
+        `,
+        info: `
+          bg-info 
+          text-info-foreground 
+          hover:bg-info/90
         `,
         infoInvert: `
           hover:bg-info 
@@ -179,17 +189,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {/* Looks okay.. */}
         {variant === "draw" && (
           <>
-            {/* TOP */}
-            <span className="absolute left-0 top-0 h-[1px] w-0 bg-primary transition-all duration-100 group-hover:w-full" />
+            <span className="absolute left-0 top-0 h-[1px] w-0 bg-primary transition-all duration-100 group-hover:w-full rounded-md" />
 
-            {/* RIGHT */}
-            <span className="absolute right-0 top-0 h-0 w-[1px] bg-primary transition-all delay-100 duration-100 group-hover:h-full" />
+            <span className="absolute right-0 top-0 h-0 w-[1px] bg-primary transition-all delay-100 duration-100 group-hover:h-full rounded-md" />
 
-            {/* BOTTOM */}
-            <span className="absolute bottom-0 right-0 h-[1px] w-0 bg-primary transition-all delay-200 duration-100 group-hover:w-full" />
+            <span className="absolute bottom-0 right-0 h-[1px] w-0 bg-primary transition-all delay-200 duration-100 group-hover:w-full rounded-md" />
 
-            {/* LEFT */}
-            <span className="absolute bottom-0 left-0 h-0 w-[1px] bg-primary transition-all delay-300 duration-100 group-hover:h-full" />
+            <span className="absolute bottom-0 left-0 h-0 w-[1px] bg-primary transition-all delay-300 duration-100 group-hover:h-full rounded-md" />
           </>
         )}
       </Comp>

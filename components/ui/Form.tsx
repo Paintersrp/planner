@@ -9,6 +9,7 @@ import {
 } from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
+import { AnimatePresence, motion } from "framer-motion"
 import {
   Controller,
   ControllerProps,
@@ -30,7 +31,9 @@ type FormFieldContextValue<
   name: TName
 }
 
-const FormFieldContext = createContext<FormFieldContextValue>({} as FormFieldContextValue)
+const FormFieldContext = createContext<FormFieldContextValue>(
+  {} as FormFieldContextValue
+)
 
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
@@ -72,19 +75,22 @@ type FormItemContextValue = {
   id: string
 }
 
-const FormItemContext = createContext<FormItemContextValue>({} as FormItemContextValue)
-
-const FormItem = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const id = useId()
-
-    return (
-      <FormItemContext.Provider value={{ id }}>
-        <div ref={ref} className={cn("space-y-1", className)} {...props} />
-      </FormItemContext.Provider>
-    )
-  }
+const FormItemContext = createContext<FormItemContextValue>(
+  {} as FormItemContextValue
 )
+
+const FormItem = forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  const id = useId()
+
+  return (
+    <FormItemContext.Provider value={{ id }}>
+      <div ref={ref} className={cn("space-y-2", className)} {...props} />
+    </FormItemContext.Provider>
+  )
+})
 
 const FormLabel = forwardRef<
   ElementRef<typeof LabelPrimitive.Root>,
@@ -95,65 +101,92 @@ const FormLabel = forwardRef<
   return (
     <Label
       ref={ref}
-      className={cn(error && "text-destructive", className)}
+      className={cn(
+        className
+        // error && 'text-destructive'
+      )}
       htmlFor={formItemId}
       {...props}
     />
   )
 })
 
-const FormControl = forwardRef<ElementRef<typeof Slot>, ComponentPropsWithoutRef<typeof Slot>>(
-  ({ ...props }, ref) => {
-    const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
+const FormControl = forwardRef<
+  ElementRef<typeof Slot>,
+  ComponentPropsWithoutRef<typeof Slot>
+>(({ ...props }, ref) => {
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
-    return (
-      <Slot
-        ref={ref}
-        id={formItemId}
-        aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}
-        aria-invalid={!!error}
-        {...props}
-      />
-    )
+  return (
+    <Slot
+      ref={ref}
+      id={formItemId}
+      aria-describedby={
+        !error
+          ? `${formDescriptionId}`
+          : `${formDescriptionId} ${formMessageId}`
+      }
+      aria-invalid={!!error}
+      {...props}
+    />
+  )
+})
+
+const FormDescription = forwardRef<
+  HTMLParagraphElement,
+  HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => {
+  const { formDescriptionId } = useFormField()
+
+  return (
+    <p
+      ref={ref}
+      id={formDescriptionId}
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props}
+    />
+  )
+})
+
+const FormMessage = forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, children, ...props }, ref) => {
+  const { error, formMessageId } = useFormField()
+  const body = error ? String(error?.message) : children
+
+  if (!body) {
+    return null
   }
-)
 
-const FormDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => {
-    const { formDescriptionId } = useFormField()
-
-    return (
-      <p
-        ref={ref}
-        id={formDescriptionId}
-        className={cn("text-sm text-muted-foreground", className)}
-        {...props}
-      />
-    )
-  }
-)
-
-const FormMessage = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, children, ...props }, ref) => {
-    const { error, formMessageId } = useFormField()
-    const body = error ? String(error?.message) : children
-
-    if (!body) {
-      return null
-    }
-
-    return (
-      <p
-        ref={ref}
-        id={formMessageId}
-        className={cn("text-sm font-medium text-destructive", className)}
-        {...props}
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: -10,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        exit={{
+          opacity: 0,
+          y: 10,
+        }}
       >
-        {body}
-      </p>
-    )
-  }
-)
+        <p
+          ref={ref}
+          id={formMessageId}
+          className={cn("text-xs text-red-500", className)}
+          {...props}
+        >
+          {body}
+        </p>
+      </motion.div>
+    </AnimatePresence>
+  )
+})
 
 FormItem.displayName = "FormItem"
 FormLabel.displayName = "FormLabel"

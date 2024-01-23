@@ -2,7 +2,6 @@
 
 import type { FC } from "react"
 
-import { useAuth } from "@/hooks/auth/useAuth"
 import { Button } from "@/components/ui/Button"
 import {
   Form,
@@ -13,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
+import { useAuth } from "@/components/auth/hooks/useAuth"
 
 const ForgotForm: FC = () => {
   const { forgotForm, forgotPassword, isLoading } = useAuth()
@@ -30,7 +30,11 @@ const ForgotForm: FC = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input disabled={isLoading} placeholder="Email address" {...field} />
+                <Input
+                  disabled={isLoading}
+                  placeholder="Email address"
+                  {...field}
+                />
               </FormControl>
 
               <FormMessage />
@@ -38,7 +42,12 @@ const ForgotForm: FC = () => {
           )}
         />
 
-        <Button isLoading={isLoading} disabled={isLoading} type="submit" variant="success">
+        <Button
+          isLoading={isLoading}
+          disabled={isLoading}
+          type="submit"
+          variant="success"
+        >
           Send reset link
         </Button>
       </form>

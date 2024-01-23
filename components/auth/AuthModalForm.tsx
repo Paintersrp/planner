@@ -2,10 +2,10 @@
 
 import { FC } from "react"
 
-import { useAuthModal, type View } from "@/hooks/auth/useAuthModal"
 import { Button } from "@/components/ui/Button"
+import { AnimateHeight } from "@/components/animated/AnimatedHeight"
+import { useAuthModal, type View } from "@/components/auth/hooks/useAuthModal"
 
-import { AnimateHeight } from "../ui/animated/AnimatedHeight"
 import { ForgotForm } from "./ForgotForm"
 import { SignInForm } from "./SignInForm"
 import { SignUpForm } from "./SignUpForm"

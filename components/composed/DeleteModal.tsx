@@ -25,7 +25,13 @@ interface DeleteModalProps {
   objectName: string
 }
 
-const DeleteModal: FC<DeleteModalProps> = ({ open, onClose, route, id, objectName }) => {
+const DeleteModal: FC<DeleteModalProps> = ({
+  open,
+  onClose,
+  route,
+  id,
+  objectName,
+}) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -44,7 +50,9 @@ const DeleteModal: FC<DeleteModalProps> = ({ open, onClose, route, id, objectNam
       console.error(error)
 
       toast.error("Error", {
-        description: `${capitalize(objectName)} deletion failed. Please try again.`,
+        description: `${capitalize(
+          objectName
+        )} deletion failed. Please try again.`,
       })
     } finally {
       setIsLoading(false)
@@ -56,7 +64,9 @@ const DeleteModal: FC<DeleteModalProps> = ({ open, onClose, route, id, objectNam
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you sure you want to delete this {objectName}?</DialogTitle>
+          <DialogTitle>
+            Are you sure you want to delete this {objectName}?
+          </DialogTitle>
           <DialogDescription>This action cannot be undone.</DialogDescription>
         </DialogHeader>
         <DialogFooter className="gap-2 sm:gap-0 justify-end md:justify-end">
