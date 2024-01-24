@@ -3,7 +3,7 @@ import { Metadata } from "next"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
-import { getServerClient } from "@/lib/supabase/hook"
+import { getServerClient } from "@/lib/supabase/server"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/Sonner"
 import { Providers } from "@/components/layout/Providers"

@@ -56,7 +56,7 @@ const AnimatedNav: FC<AnimatedNavProps> = ({
         relative 
         z-0 
         py-2 
-        mx-2
+        mx-0
 
         hidden
         sm:flex

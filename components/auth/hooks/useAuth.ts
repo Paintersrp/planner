@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "sonner"
 
 import { useUserStore } from "@/lib/stores/user"
-import { createClient } from "@/lib/supabase/client"
+import useBrowserClient from "@/lib/supabase/client"
 import {
   AuthRequest,
   AuthSchema,
@@ -20,7 +20,7 @@ const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false)
   const { onClose } = useAuthModal()
   const { setUser } = useUserStore()
-  const supabase = createClient()
+  const supabase = useBrowserClient()
   const router = useRouter()
   const pathname = usePathname()
 

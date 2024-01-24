@@ -1,6 +1,6 @@
-import { Footer } from "./components/Footer"
-import { Header } from "./components/Header"
-import { QuickAccess } from "./components/QuickAccess"
+import { Footer } from "@/components/layout/Footer"
+
+import { RootHeader } from "./components/RootHeader"
 
 interface LayoutProps {
   children: React.ReactNode
@@ -9,8 +9,7 @@ interface LayoutProps {
 export default async function Layout({ children }: LayoutProps) {
   return (
     <>
-      <QuickAccess />
-      <Header />
+      <RootHeader />
       <div className="flex-1 h-full">{children}</div>
       <Footer />
     </>
