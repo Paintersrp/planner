@@ -4,16 +4,10 @@ import { DevCode } from "@/components/ui/DevCode"
 import { PageContainer } from "@/components/layout/PageContainer"
 
 interface MonthpageProps {
-  params: {
-    plannerId: string
-    yearId: string
-    monthId: string
-  }
+  params: MonthParams
 }
 
 const Monthpage: FC<MonthpageProps> = ({ params }) => {
-  console.log(params)
-
   return (
     <PageContainer>
       <DevCode data={params} />

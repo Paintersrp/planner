@@ -43,6 +43,7 @@ const EditModal: FC<EditModalProps> = ({
       setIsLoading(false)
     }
   }
+  
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent>

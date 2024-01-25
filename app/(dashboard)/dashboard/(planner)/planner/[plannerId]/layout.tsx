@@ -1,29 +1,21 @@
-import { getPlanner } from "@/actions/planners"
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from "@tanstack/react-query"
+import type { ReactNode } from "react"
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query"
 
+import { usePlannerPrefetch } from "@/lib/queries/planner"
 import { Footer } from "@/components/layout/Footer"
 
 import { PlannerHeader } from "./components/PlannerHeader"
 
 interface PlannerLayoutProps {
-  params: { plannerId: string }
-  children: React.ReactNode
+  params: PlannerParams
+  children: ReactNode
 }
 
 export default async function PlannerLayout({
   params,
   children,
 }: PlannerLayoutProps) {
-  const queryClient = new QueryClient()
-
-  await queryClient.prefetchQuery({
-    queryKey: ["planner"],
-    queryFn: async () => getPlanner(params.plannerId),
-  })
+  const queryClient = await usePlannerPrefetch(params.plannerId)
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

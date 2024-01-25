@@ -1,53 +1,52 @@
 "use client"
 
-import { useState, type Dispatch, type FC, type SetStateAction } from "react"
+import { useState, type FC } from "react"
 import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+import type { SelectSingleEventHandler } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/Button"
 import { Calendar } from "@/components/ui/Calendar"
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/Popover"
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu"
+import { Icons } from "@/components/ui/Icons"
 
 interface DatePickerProps {
-  date: Date
-  setDate: Dispatch<SetStateAction<Date>>
+  selected: Date
+  onSelect: SelectSingleEventHandler
 }
 
-export const DatePicker: FC<DatePickerProps> = ({ date, setDate }) => {
+export const DatePicker: FC<DatePickerProps> = ({ selected, onSelect }) => {
   const [open, setOpen] = useState<boolean>(false)
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
+      <DropdownMenuTrigger asChild>
         <Button
           variant={"outline"}
           className={cn(
             "w-[200px] justify-start text-left font-normal",
-            !date && "text-muted-foreground"
+            !selected && "text-muted-foreground"
           )}
         >
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          <Icons.Calendar className="mr-2 h-4 w-4" />
+          {selected ? format(selected, "PPP") : <span>Pick a date</span>}
         </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-auto p-0">
         <Calendar
           mode="single"
-          selected={date}
-          onSelect={(date) => {
-            if (date) setDate(date)
-          }}
+          selected={selected}
+          onSelect={onSelect}
           initialFocus
           onDayClick={() => {
             setOpen(false)
           }}
         />
-      </PopoverContent>
-    </Popover>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

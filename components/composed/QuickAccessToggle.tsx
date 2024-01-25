@@ -5,7 +5,7 @@ import { useCallback, useEffect, type FC } from "react"
 import { useQuickAccess } from "@/lib/stores/quick-access"
 import { Icons } from "@/components/ui/Icons"
 import { Text } from "@/components/ui/Text"
-import { IconTooltipButton } from "@/components/composed/TooltipButton"
+import { IconTooltipButton } from "@/components/composed/IconTooltipButton"
 
 const QuickAccessToggle: FC = () => {
   const { open, setOpen } = useQuickAccess()

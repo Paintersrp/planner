@@ -1,9 +1,8 @@
 "use client"
 
 import type { FC } from "react"
-import { getUserData } from "@/actions/user"
-import { useQuery } from "@tanstack/react-query"
 
+import { useUserQuery } from "@/lib/queries/user"
 import { DevCode } from "@/components/ui/DevCode"
 
 interface PlannersProps {
@@ -11,10 +10,7 @@ interface PlannersProps {
 }
 
 const Planners: FC<PlannersProps> = ({}) => {
-  const { data } = useQuery({
-    queryKey: ["user-data"],
-    queryFn: getUserData,
-  })
+  const { data } = useUserQuery()
 
   return <DevCode data={data} />
 }

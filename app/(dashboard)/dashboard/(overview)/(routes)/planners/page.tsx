@@ -12,7 +12,9 @@ const PlannersPage: FC<PlannersPageProps> = ({}) => {
   return (
     <PageContainer>
       <div>Planners Page</div>
-      <Planners />
+      <div className="flex">
+        <Planners />
+      </div>
     </PageContainer>
   )
 }

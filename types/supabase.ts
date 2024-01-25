@@ -70,18 +70,21 @@ export interface Database {
       planners: {
         Row: {
           created_at: string
+          date_range: string | null
           id: number
           name: string
           user_id: string | null
         }
         Insert: {
           created_at?: string
+          date_range?: string | null
           id?: number
           name: string
           user_id?: string | null
         }
         Update: {
           created_at?: string
+          date_range?: string | null
           id?: number
           name?: string
           user_id?: string | null
@@ -99,6 +102,7 @@ export interface Database {
       profiles: {
         Row: {
           avatar_url: string | null
+          biography: string | null
           full_name: string | null
           id: string
           updated_at: string | null
@@ -107,6 +111,7 @@ export interface Database {
         }
         Insert: {
           avatar_url?: string | null
+          biography?: string | null
           full_name?: string | null
           id: string
           updated_at?: string | null
@@ -115,6 +120,7 @@ export interface Database {
         }
         Update: {
           avatar_url?: string | null
+          biography?: string | null
           full_name?: string | null
           id?: string
           updated_at?: string | null
@@ -165,7 +171,12 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_planner: {
+        Args: {
+          data: Json
+        }
+        Returns: Json
+      }
     }
     Enums: {
       continents:

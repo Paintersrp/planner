@@ -1,9 +1,6 @@
-import { getUserData } from "@/actions/user"
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from "@tanstack/react-query"
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query"
+
+import { useUserPrefetch } from "@/lib/queries/user"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -12,12 +9,7 @@ interface DashboardLayoutProps {
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const queryClient = new QueryClient()
-
-  await queryClient.prefetchQuery({
-    queryKey: ["user-data"],
-    queryFn: getUserData,
-  })
+  const queryClient = await useUserPrefetch()
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

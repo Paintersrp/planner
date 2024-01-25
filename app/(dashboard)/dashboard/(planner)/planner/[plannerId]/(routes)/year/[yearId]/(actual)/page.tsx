@@ -1,18 +1,18 @@
 import type { FC } from "react"
 
+import { DevCode } from "@/components/ui/DevCode"
 import { PageContainer } from "@/components/layout/PageContainer"
 
 interface YearPageProps {
-  params: {
-    yearId: string
-    plannerId: string
-  }
+  params: YearParams
 }
 
 const YearPage: FC<YearPageProps> = ({ params }) => {
-  console.log(params)
-
-  return <PageContainer>ReplaceMe</PageContainer>
+  return (
+    <PageContainer>
+      <DevCode data={params} />
+    </PageContainer>
+  )
 }
 
 export default YearPage

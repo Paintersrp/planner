@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { getUserData } from "@/actions/user"
 import { useQuery } from "@tanstack/react-query"
 
+import { usePlannerModal } from "@/lib/stores/planner-modal"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/Button"
 import {
@@ -23,17 +24,20 @@ import {
   PopoverTrigger,
 } from "@/components/ui/Popover"
 
+import { PlannerFormModal } from "./PlannerFormModal"
+
 interface PlannerSelectProps {
   // Add your prop types here
 }
 
 const PlannerSelect: FC<PlannerSelectProps> = () => {
+  const { setOpen: setModalOpen } = usePlannerModal()
   const [open, setOpen] = useState<boolean>(false)
   const router = useRouter()
 
   const { data } = useQuery({
     queryKey: ["user-data"],
-    queryFn: getUserData,
+    queryFn: () => getUserData(),
   })
 
   const formattedItems = data!.planners.map((item) => ({
@@ -87,7 +91,7 @@ const PlannerSelect: FC<PlannerSelectProps> = () => {
               <CommandItem
                 onSelect={() => {
                   setOpen(false)
-                  //   shopModal.onOpen()
+                  setModalOpen(true)
                 }}
               >
                 <Icons.PlusCircle className="mr-2 h-5 w-5" />

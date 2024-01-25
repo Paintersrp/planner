@@ -2,7 +2,7 @@ import type { FC } from "react"
 
 import { Icons } from "@/components/ui/Icons"
 import { useAuthModal } from "@/components/auth/hooks/useAuthModal"
-import { IconTooltipButton } from "@/components/composed/TooltipButton"
+import { IconTooltipButton } from "@/components/composed/IconTooltipButton"
 
 const AuthToggle: FC = () => {
   const { setView, onOpen } = useAuthModal()

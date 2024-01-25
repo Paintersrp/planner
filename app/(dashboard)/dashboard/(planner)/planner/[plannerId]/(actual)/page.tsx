@@ -6,13 +6,12 @@ import { MonthLinks } from "./components/MonthLinks"
 import { Planner } from "./components/Planner"
 
 interface PlannerPageProps {
-  params: { plannerId: string }
+  params: PlannerParams
 }
 
 const PlannerPage: FC<PlannerPageProps> = ({ params }) => {
   return (
     <PageContainer>
-      {params.plannerId}
       <div className="grid grid-cols-2">
         <Planner />
         <MonthLinks />

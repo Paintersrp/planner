@@ -1,7 +1,7 @@
 import type { FC } from "react"
 
 import { Icons } from "@/components/ui/Icons"
-import { IconTooltipButton } from "@/components/composed/TooltipButton"
+import { IconTooltipButton } from "@/components/composed/IconTooltipButton"
 
 const SettingsToggle: FC = () => {
   return (
